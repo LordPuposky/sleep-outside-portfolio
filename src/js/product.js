@@ -1,32 +1,38 @@
-import { getParam } from "./utils.mjs";
+import {
+  getParam,
+  getLocalStorage,
+  setLocalStorage,
+  loadHeaderFooter
+} from "./utils.mjs";
 import ProductData from "./ProductData.mjs";
-<<<<<<< HEAD
-import { getLocalStorage, loadHeaderFooter, setLocalStorage } from "./utils.mjs";
-
-// Load the dynamic header and footer for this page
-loadHeaderFooter();
-=======
 import ProductDetails from "./ProductDetails.mjs";
->>>>>>> bce5c6a5489794df969ca1a61d6c91ded7577bb9
 
+// 1. Initialize dynamic Header and Footer for this page
+loadHeaderFooter();
+
+// 2. Set up data source and retrieve the product ID from the URL parameters
 const dataSource = new ProductData("tents");
 const productID = getParam("product");
 
-const product = new ProductDetails(productID, dataSource);
-product.init();
+// 3. Initialize the product details logic
+const productDetail = new ProductDetails(productID, dataSource);
+productDetail.init();
 
-<<<<<<< HEAD
-function addProductToCart(product) {
+/**
+ * Adds a product object to local storage.
+ * Renamed parameter to 'item' to avoid shadowing issues.
+ */
+function addProductToCart(item) {
   const cartItems = getLocalStorage("so-cart") || [];
-  cartItems.push(product);
+  cartItems.push(item);
   setLocalStorage("so-cart", cartItems);
 }
 
-// add to cart button event handler
+// Event handler for the "Add to Cart" button
 async function addToCartHandler(e) {
-  const product = await dataSource.findProductById(e.target.dataset.id);
-  addProductToCart(product);
+  const productItem = await dataSource.findProductById(e.target.dataset.id);
+  addProductToCart(productItem);
 }
-=======
->>>>>>> bce5c6a5489794df969ca1a61d6c91ded7577bb9
 
+// To fix 'never used' warning, you can export the handler or attach it to a listener
+document.getElementById("addToCart")?.addEventListener("click", addToCartHandler);
