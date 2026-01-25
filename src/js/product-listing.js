@@ -9,7 +9,7 @@ loadHeaderFooter();
 const dataSource = new ProductData();
 
 // 3. Retrieve the category from the URL parameters
-const category = getParam("category") || "tents";
+const category = getParam("category");
 
 // 4. Select the HTML element where the product list will be rendered
 const listElement = document.querySelector(".product-list");
