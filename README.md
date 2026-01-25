@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # BYU-Pathway Worldwide Online
 ## WDD 330 - Web Frontend Development II
 
@@ -25,3 +26,6 @@ _BYU-Pathway Worldwide improves lives through access to spiritually based, onlin
 
 
 
+=======
+# sleep-outside-portfolio
+>>>>>>> 071e8771601d6a2f721803b0f2ca1d1bb9d2e79a
