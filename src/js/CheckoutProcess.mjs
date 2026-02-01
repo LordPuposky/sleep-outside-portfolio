@@ -104,15 +104,20 @@ export default class CheckoutProcess {
     json.shipping = this.shipping;
     json.items = packageItems(this.list);
 
+    // STEP 4 VALIDATION: Log the object to verify structure before sending
+    // eslint-disable-next-line no-console
+    console.log("Final JSON object to API:", json);
+
     try {
       const res = await services.checkout(json);
       // eslint-disable-next-line no-console
-      console.log(res);
+      console.log("Server Response:", res);
       // Success: clear the cart and redirect the user
       setLocalStorage(this.key, []);
       location.assign("/checkout/checkedout.html");
+
     } catch (err) {
-      // Error handling: clear previous alerts and display new server messages
+      // STEP 5: Handling errors from the server
       const existingAlerts = document.querySelectorAll(".alert");
       existingAlerts.forEach((alert) => alert.remove());
 
