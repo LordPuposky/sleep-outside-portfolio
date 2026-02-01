@@ -1,4 +1,4 @@
-import ProductData from "./ProductData.mjs";
+import ExternalServices from "./ExternalServices.mjs";
 import ProductDetails from "./ProductDetails.mjs";
 import {
   getParam,
@@ -9,7 +9,7 @@ import {
 loadHeaderFooter();
 
 // 2. Set up data source and retrieve the product ID from the URL parameters
-const dataSource = new ProductData("tents");
+const dataSource = new ExternalServices("tents");
 const productID = getParam("product");
 
 // 3. Initialize the product details logic

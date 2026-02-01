@@ -1,4 +1,4 @@
-import ProductData from "./ProductData.mjs";
+import ExternalServices from "./ExternalServices.mjs";
 import ProductList from "./ProductList.mjs";
 import { getParam, loadHeaderFooter } from "./utils.mjs";
 
@@ -6,7 +6,7 @@ import { getParam, loadHeaderFooter } from "./utils.mjs";
 loadHeaderFooter();
 
 // 2. Set up the data source
-const dataSource = new ProductData();
+const dataSource = new ExternalServices();
 
 // 3. Retrieve the category from the URL parameters
 const category = getParam("category");

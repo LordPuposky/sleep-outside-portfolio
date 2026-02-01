@@ -1,0 +1,95 @@
+/* Container for the checkout form */
+.checkout-form {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+/* Fieldset styling for grouping sections */
+fieldset {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+}
+
+legend {
+  font-weight: bold;
+  padding: 0 0.5rem;
+  color: #333;
+}
+
+/* Grid for labels and inputs */
+label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: 500;
+}
+
+input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.2rem;
+  border: 1px solid #999;
+  border-radius: 4px;
+  box-sizing: border-box;
+  /* Ensures padding doesn't increase width */
+}
+
+/* Validation styles */
+input:invalid {
+  border-color: #721c24;
+}
+
+input:valid {
+  border-color: #155724;
+}
+
+/* Submit button styling */
+#checkoutSubmit {
+  background-color: #333;
+  color: white;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 1.1rem;
+}
+
+#checkoutSubmit:hover {
+  background-color: #555;
+}
+
+/* Step 5.1: Alert Message Styles */
+.alert {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f8d7da;
+  /* Fondo rojizo suave */
+  color: #721c24;
+  /* Texto rojo oscuro */
+  border: 1px solid #f5c6cb;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 4px;
+  position: relative;
+}
+
+.alert p {
+  margin: 0;
+  flex: 1;
+}
+
+.alert span {
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-left: 1rem;
+  padding: 0 5px;
+}
+
+.alert span:hover {
+  color: #000;
+}

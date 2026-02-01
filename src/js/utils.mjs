@@ -54,8 +54,12 @@ export function renderWithTemplate(template, parentElement, data, callback) {
 
 // Main function to load Header and Footer globally
 export async function loadHeaderFooter() {
-  const headerTemplate = await loadTemplate("/partials/header.html");
-  const footerTemplate = await loadTemplate("/partials/footer.html");
+  const path = window.location.pathname;
+  const isInSubfolder = path.includes("/src/");
+  const basePath = isInSubfolder ? "../../" : "/";
+
+  const headerTemplate = await loadTemplate(`${basePath}partials/header.html`);
+  const footerTemplate = await loadTemplate(`${basePath}partials/footer.html`);
 
   const headerElement = document.querySelector("#main-header");
   const footerElement = document.querySelector("#main-footer");
@@ -68,4 +72,28 @@ export function getParam(param) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   return urlParams.get(param);
+}
+
+// Add this to the end of utils.mjs
+export function alertMessage(message, scroll = true) {
+  const alert = document.createElement("div");
+  alert.classList.add("alert");
+  
+  // Create the alert content with a close button (X)
+  alert.innerHTML = `<p>${message}</p><span>X</span>`;
+  
+  // Add an event listener to the "X" to remove the alert when clicked
+  alert.addEventListener("click", function (e) {
+    if (e.target.tagName === "SPAN") {
+      alert.remove();
+    }
+  });
+
+  const main = document.querySelector("main");
+  main.prepend(alert);
+
+  // If scroll is true, scroll to the top of the page
+  if (scroll) {
+    window.scrollTo(0, 0);
+  }
 }
