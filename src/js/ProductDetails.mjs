@@ -37,31 +37,51 @@ export default class ProductDetails {
     // Save the updated list back to Local Storage
     setLocalStorage("so-cart", cartItems);
 
-    // Provide the required visual feedback
-    alert(`${this.product.NameWithoutBrand} has been added to your cart!`);
+    // --- START OF ANIMATION LOGIC ---
+    // Trigger the 'pop' animation on the cart icon
+    const cartIcon = document.querySelector(".cart");
+    if (cartIcon) {
+      cartIcon.classList.add("animate");
+
+      // Remove class after animation finishes (0.5s)
+      setTimeout(() => {
+        cartIcon.classList.remove("animate");
+      }, 500);
+    }
+    // --- END OF ANIMATION LOGIC ---
+
+    // --- START OF SUCCESS MESSAGE LOGIC ---
+    // Show a temporary visual message instead of a blocking alert
+    const addToCartButton = document.getElementById("addToCart");
+    const successMessage = document.createElement("p");
+    successMessage.classList.add("cart-success-msg");
+    successMessage.textContent = "Added to backpack! 🎒";
+
+    addToCartButton.before(successMessage);
+
+    // Remove the message after 2 seconds
+    setTimeout(() => {
+      successMessage.remove();
+    }, 2000);
+    // --- END OF SUCCESS MESSAGE LOGIC ---
   }
 
   renderProductDetails() {
-    // Update the DOM elements with the fetched data
     productDetailsTemplate(this.product);
   }
 }
 
 function productDetailsTemplate(product) {
-  // Brand and Product Names
   document.getElementById("productBrandName").textContent = product.Brand.Name;
   document.getElementById("productName").textContent = product.NameWithoutBrand;
 
-  // Image - Using the correct high-res path from the new API
   const productImage = document.getElementById("productImage");
   productImage.src = product.Images.PrimaryLarge;
   productImage.alt = product.NameWithoutBrand;
 
-  // Price, Color, and Detailed Description
   document.getElementById("productFinalPrice").textContent = `$${product.FinalPrice}`;
   document.getElementById("productColorName").textContent = product.Colors[0].ColorName;
   document.getElementById("productDescriptionHtmlSimple").innerHTML = product.DescriptionHtmlSimple;
 
-  // Update button data for tracking
   document.getElementById("addToCart").dataset.id = product.Id;
 }
